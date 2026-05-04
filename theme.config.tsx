@@ -1,21 +1,24 @@
-import React from 'react';
-import { DocsThemeConfig } from 'nextra-theme-docs';
-import { useRouter } from 'next/router';
+import React from "react";
+import { DocsThemeConfig } from "nextra-theme-docs";
+import { useRouter } from "next/router";
+import { getPublicRuntimeConfig } from "./pages/_config/runtimeConfig";
 
 function SearchPlaceholder() {
   const { locale } = useRouter();
 
   const map = {
-    es: 'Buscar',
-    en: 'Search',
-    pt: 'Procurar',
-    fr: 'Rechercher',
-    de: 'Suchen',
-    zh: '搜索'
+    es: "Buscar",
+    en: "Search",
+    pt: "Procurar",
+    fr: "Rechercher",
+    de: "Suchen",
+    zh: "搜索",
   };
 
   return map[locale] ?? map.en;
 }
+
+const runtimeConfig = getPublicRuntimeConfig();
 
 const config: DocsThemeConfig = {
   darkMode: true,
@@ -23,23 +26,23 @@ const config: DocsThemeConfig = {
     placeholder: SearchPlaceholder,
   },
   logo: (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-      <img src={'/opire_logo.svg'} style={{ width: '36px', height: '36px' }} />
+    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+      <img src={"/opire_logo.svg"} style={{ width: "36px", height: "36px" }} />
 
       <span>Opire</span>
     </div>
   ),
-  docsRepositoryBase: 'https://github.com/Opire/docs/blob/main',
+  docsRepositoryBase: "https://github.com/Opire/docs/blob/main",
   project: {
-    link: 'https://github.com/opire/docs',
+    link: "https://github.com/opire/docs",
   },
   chat: {
-    link: 'https://discord.gg/Rfq8CMZH4b',
+    link: "https://discord.gg/Rfq8CMZH4b",
   },
   useNextSeoProps() {
     return {
       titleTemplate:
-        'Opire Docs - The Rewards Platform for Software Developers',
+        "Opire Docs - The Rewards Platform for Software Developers",
     };
   },
   head: (
@@ -75,7 +78,13 @@ const config: DocsThemeConfig = {
         href="https://docs.opire.dev/overview/introduction"
       />
       <link rel="shortcut icon" href="/opire_logo.svg" />
-      <script defer src="https://eu.umami.is/script.js" data-website-id={process.env.NEXT_PUBLIC_UMAMI_TOKEN}></script>
+      {runtimeConfig.umamiToken && (
+        <script
+          defer
+          src="https://eu.umami.is/script.js"
+          data-website-id={runtimeConfig.umamiToken}
+        ></script>
+      )}
     </>
   ),
   primaryHue: {
@@ -94,17 +103,17 @@ const config: DocsThemeConfig = {
       return <>{title}</>;
     },
   },
-  gitTimestamp: '',
+  gitTimestamp: "",
   footer: {
-    text: 'Opire with 💙',
+    text: "Opire with 💙",
   },
   i18n: [
-    { locale: 'en', text: 'English' },
-    { locale: 'es', text: 'Español' },
-    { locale: 'pt', text: 'Portuguese' },
-    { locale: 'fr', text: 'Français' },
-    { locale: 'de', text: 'Deutsch' },
-    { locale: 'zh', text: '简体中文' }
+    { locale: "en", text: "English" },
+    { locale: "es", text: "Español" },
+    { locale: "pt", text: "Portuguese" },
+    { locale: "fr", text: "Français" },
+    { locale: "de", text: "Deutsch" },
+    { locale: "zh", text: "简体中文" },
   ],
 };
 

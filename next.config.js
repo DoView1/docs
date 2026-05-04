@@ -1,20 +1,21 @@
-const withNextra = require('nextra')({
-  theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.tsx',
-})
+const withNextra = require("nextra")({
+  theme: "nextra-theme-docs",
+  themeConfig: "./theme.config.tsx",
+});
 
 module.exports = withNextra({
+  output: "standalone",
   i18n: {
-    locales: ['en', 'es', 'pt', 'fr', 'de', 'zh'],
-    defaultLocale: 'en'
+    locales: ["en", "es", "pt", "fr", "de", "zh"],
+    defaultLocale: "en",
   },
   async redirects() {
     return [
       {
-        source: '/',
-        destination: '/overview/introduction',
+        source: "/",
+        destination: "/overview/introduction",
         permanent: true,
       },
-    ]
+    ];
   },
-})
+});
