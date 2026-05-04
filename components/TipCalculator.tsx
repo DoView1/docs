@@ -1,8 +1,10 @@
 // Example from https://beta.reactjs.org/learn
 
 import { useEffect, useState } from "react";
-import ReactEcharts from "echarts-for-react";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+
+const ReactEcharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const STRIPE_FEE = {
   fixed: 0.85, // Payments + Stripe Connect Express accounts cost

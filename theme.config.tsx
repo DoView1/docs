@@ -1,7 +1,6 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
-import { getPublicRuntimeConfig } from "./pages/_config/runtimeConfig";
 
 function SearchPlaceholder() {
   const { locale } = useRouter();
@@ -17,8 +16,6 @@ function SearchPlaceholder() {
 
   return map[locale] ?? map.en;
 }
-
-const runtimeConfig = getPublicRuntimeConfig();
 
 const config: DocsThemeConfig = {
   darkMode: true,
@@ -78,13 +75,6 @@ const config: DocsThemeConfig = {
         href="https://docs.opire.dev/overview/introduction"
       />
       <link rel="shortcut icon" href="/opire_logo.svg" />
-      {runtimeConfig.umamiToken && (
-        <script
-          defer
-          src="https://eu.umami.is/script.js"
-          data-website-id={runtimeConfig.umamiToken}
-        ></script>
-      )}
     </>
   ),
   primaryHue: {
